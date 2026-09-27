@@ -114,5 +114,5 @@ if (!newMessage || !newMessage.trim()) {
 });
 
 server.listen(5000, () => {
-  console.log("Server running at http://localhost:5000");
+  console.log(`Server running on port ${PORT}`);
 });
