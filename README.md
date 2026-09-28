@@ -1,19 +1,20 @@
 # Real-Time Chat App - Backend
 
-This is the backend of my real-time chat application.
+This is the backend for my real-time chat application.
 
-It handles messages, saves them in MongoDB, and uses Socket.IO to send messages instantly between users.
+It handles the chat messages, stores them in MongoDB, and uses Socket.IO to send messages instantly.
 
 ## Features
 
 * Real-time messaging
-* Save messages in MongoDB
-* Get previous messages
+* Messages saved in MongoDB
+* Previous messages can be loaded
 * Chat rooms
-* Online/offline status
+* Online and offline status
 * Last seen
-* Edit messages within 5 minutes
+* Message editing within 5 minutes
 * Basic error handling
+* Automatic Socket.IO reconnection
 
 ## Technologies Used
 
@@ -25,72 +26,29 @@ It handles messages, saves them in MongoDB, and uses Socket.IO to send messages 
 * CORS
 * dotenv
 
-## Live Backend
+## How It Works
 
-https://chatbackend-7vdm.onrender.com
+When a user joins the chat, the server adds them to a chat room.
 
-## GitHub
+When a message is sent, the server saves it in MongoDB and sends it to the users in that room using Socket.IO.
 
-https://github.com/swetasm108-bit/ChatBackend
+The server also keeps track of when users join or leave the chat.
 
-## API
-
-### Get Messages
-
-GET
-
-/api/messages/:roomId
-
-Example:
-
-/api/messages/sweta-rahul
-
-### Send Message
-
-POST
-
-/api/messages
-
-Example:
-
-{
-"roomId": "sweta-rahul",
-"sender": "Sweta",
-"message": "Hello!"
-}
-
-## Socket.IO Events
-
-### Client to Server
-
-* join_room
-* send_message
-* edit_message
-* leave_room
-
-### Server to Client
-
-* receive_message
-* message_edited
-* user_status
-* message_error
-* edit_error
-
-## How to Run
+## How to Run Locally
 
 Clone the project:
 
-git clone https://github.com/swetasm108-bit/ChatBackend.git
+git clone https
 
 Go to the project folder:
 
 cd ChatBackend
 
-Install the packages:
+Install the required packages:
 
 npm install
 
-Create a `.env` file:
+Create a `.env` file in the backend folder:
 
 MONGO_URI=your_mongodb_connection_string
 PORT=5000
@@ -105,7 +63,29 @@ http://localhost:5000
 
 ## Environment Variables
 
-* `MONGO_URI` - MongoDB connection string
-* `PORT` - Server port
+`MONGO_URI` - MongoDB connection string
 
-Do not upload the `.env` file to GitHub.
+`PORT` - Port used by the server
+
+Do not upload the `.env` file or your MongoDB connection string to GitHub.
+
+## Project Structure
+
+ChatBackend/
+
+* config/
+
+  * db.js
+* models/
+
+  * Message.js
+* routes/
+
+  * messageRoutes.js
+* server.js
+* package.json
+* .env
+
+## Note
+
+This backend is made for the real-time chat assignment and uses Socket.IO for instant communication.
